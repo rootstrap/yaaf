@@ -18,7 +18,7 @@ sudo: false
 
 env:
   global:
-    - CC_TEST_REPORTER_ID=c699ccc9420cee9f8cc90d4df9b3f884858a14664bd1af0763cdd8bce9f38f88
+    - CC_TEST_REPORTER_ID=aff2c7b9e07e54d5fc9e5588d2e2a8bab4f69950d35000edc2b6250bbaba477d
 
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
