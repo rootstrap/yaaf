@@ -4,6 +4,8 @@ RSpec.describe YAAF::Form do
   class TestForm < YAAF::Form
     attr_accessor :name
 
+    validates :name, format: { with: /[a-zA-Z]+/ }
+
     def initialize(args)
       super(args)
 
@@ -26,11 +28,29 @@ RSpec.describe YAAF::Form do
       it 'saves the user' do
         expect { subject }.to change { User.count }.by 1
       end
+
+      it 'saves with correct information' do
+        expect { subject }.to change { User.last&.name }.to 'John'
+      end
     end
 
-    context 'with invalid values' do
+    context 'when the model is invalid' do
       let(:args) do
         { name: nil }
+      end
+
+      it 'returns false' do
+        expect(subject).to eq false
+      end
+
+      it 'does not save the user' do
+        expect { subject }.not_to change { User.count }
+      end
+    end
+
+    context 'when the form is invalid' do
+      let(:args) do
+        { name: '1234' }
       end
 
       it 'returns false' do

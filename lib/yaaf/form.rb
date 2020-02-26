@@ -38,14 +38,14 @@ module YAAF
       ::ActiveRecord::Base.transaction do
         before_save
 
-        (models || []).map(&:save!)
+        models.map(&:save!)
 
         after_save
       end
     end
 
     def validate_models
-      (models || []).each do |model|
+      models.each do |model|
         promote_errors(model) if model.invalid?
       end
     end

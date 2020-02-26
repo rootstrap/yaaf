@@ -2,9 +2,9 @@
 
 require 'active_model'
 require 'active_record'
+require 'yaaf/form'
+require 'yaaf/version'
 
 # Namespace for all objects in YAAF
 module YAAF
-  require 'yaaf/form'
-  require 'yaaf/version'
 end
