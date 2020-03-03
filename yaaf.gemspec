@@ -26,8 +26,8 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   # # Production dependencies
-  spec.add_dependency 'activemodel'
-  spec.add_dependency 'activerecord'
+  spec.add_dependency 'activemodel', ['> 4', '< 7']
+  spec.add_dependency 'activerecord', ['> 4', '< 7']
 
   spec.add_development_dependency 'database_cleaner-active_record'
   spec.add_development_dependency 'rake', '~> 13.0.1'
