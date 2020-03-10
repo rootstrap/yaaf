@@ -2,6 +2,7 @@
 
 require 'bundler/setup'
 require 'simplecov'
+require 'uri' unless defined? URI::Generic
 require 'active_record'
 require 'database_cleaner/active_record'
 
