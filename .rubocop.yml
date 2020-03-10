@@ -17,6 +17,7 @@ Metrics/BlockLength:
   CountComments: false  # count full line comments?
   Max: 25
   Exclude:
+    - 'yaaf.gemspec'
     - config/**/*
     - spec/**/*
   ExcludedMethods:
