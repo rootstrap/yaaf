@@ -1,3 +1,1 @@
-class User < ActiveRecord::Base
-  validates :name, presence: true
-end
+require_relative 'models/user'
