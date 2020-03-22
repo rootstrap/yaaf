@@ -16,6 +16,10 @@ module YAAF
       true
     end
 
+    private
+
+    attr_accessor :models
+
     def after_commit; end
 
     def after_save; end
@@ -23,10 +27,6 @@ module YAAF
     def before_save; end
 
     def before_validation; end
-
-    private
-
-    attr_accessor :models
 
     def promote_errors(model)
       model.errors.each do |attribute, message|
