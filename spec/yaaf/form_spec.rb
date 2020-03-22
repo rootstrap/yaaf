@@ -62,4 +62,54 @@ RSpec.describe YAAF::Form do
       end
     end
   end
+
+  describe '#save!' do
+    subject { TestForm.new(args).save! }
+
+    context 'with valid values' do
+      let(:args) do
+        { name: 'John' }
+      end
+
+      it 'returns true' do
+        expect(subject).to eq true
+      end
+
+      it 'saves the user' do
+        expect { subject }.to change { User.count }.by 1
+      end
+
+      it 'saves with correct information' do
+        expect { subject }.to change { User.last&.name }.to 'John'
+      end
+    end
+
+    context 'when the model is invalid' do
+      let(:args) do
+        { name: nil }
+      end
+
+      it 'raises an exception' do
+        expect { subject }.to raise_error(ActiveRecord::RecordNotSaved)
+      end
+
+      it 'does not save the user' do
+        expect { subject rescue nil }.not_to change { User.count }
+      end
+    end
+
+    context 'when the form is invalid' do
+      let(:args) do
+        { name: '1234' }
+      end
+
+      it 'raises an exception' do
+        expect { subject }.to raise_error(ActiveRecord::RecordNotSaved)
+      end
+
+      it 'does not save the user' do
+        expect { subject rescue nil }.not_to change { User.count }
+      end
+    end
+  end
 end

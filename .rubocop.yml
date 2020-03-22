@@ -64,5 +64,9 @@ Style/FrozenStringLiteralComment:
 Style/ModuleFunction:
   Enabled: false
 
+Style/RescueModifier:
+  Exclude:
+    - spec/**/*
+
 Naming/PredicateName:
   Enabled: false

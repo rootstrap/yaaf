@@ -16,6 +16,10 @@ module YAAF
       true
     end
 
+    def save!
+      save || raise(ActiveRecord::RecordNotSaved.new('Failed to save the form', self))
+    end
+
     private
 
     attr_accessor :models
