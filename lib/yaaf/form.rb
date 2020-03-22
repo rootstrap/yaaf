@@ -8,11 +8,14 @@ module YAAF
     validate :validate_models
 
     def save
-      before_validation
-      return false if invalid?
+      with_validation_callbacks do
+        return false if invalid?
+      end
 
       save_in_transaction
+
       after_commit
+
       true
     end
 
@@ -27,6 +30,8 @@ module YAAF
     def after_commit; end
 
     def after_save; end
+
+    def after_validation; end
 
     def before_save; end
 
@@ -52,6 +57,12 @@ module YAAF
       models.each do |model|
         promote_errors(model) if model.invalid?
       end
+    end
+
+    def with_validation_callbacks
+      before_validation
+      yield
+      after_validation
     end
   end
 end
