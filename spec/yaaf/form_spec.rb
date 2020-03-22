@@ -9,12 +9,13 @@ RSpec.describe YAAF::Form do
     def initialize(args)
       super(args)
 
-      @models = [User.new(name: args[:name])]
+      @models = [User.new(name: name)]
     end
   end
 
   describe '#save' do
-    subject { TestForm.new(args).save }
+    let(:options) { {} }
+    subject { TestForm.new(args).save(options) }
 
     context 'with valid values' do
       let(:args) do
@@ -46,6 +47,24 @@ RSpec.describe YAAF::Form do
       it 'does not save the user' do
         expect { subject }.not_to change { User.count }
       end
+
+      context 'when validations are skipped' do
+        let(:options) { { validate: false } }
+
+        it 'returns true' do
+          expect(subject).to eq true
+        end
+
+        it 'saves the user' do
+          expect { subject }.to change { User.count }.by 1
+        end
+
+        it 'saves with correct information' do
+          subject
+
+          expect(User.last.name).to eq nil
+        end
+      end
     end
 
     context 'when the form is invalid' do
@@ -59,12 +78,29 @@ RSpec.describe YAAF::Form do
 
       it 'does not save the user' do
         expect { subject }.not_to change { User.count }
+      end
+
+      context 'when validations are skipped' do
+        let(:options) { { validate: false } }
+
+        it 'returns true' do
+          expect(subject).to eq true
+        end
+
+        it 'saves the user' do
+          expect { subject }.to change { User.count }.by 1
+        end
+
+        it 'saves with correct information' do
+          expect { subject }.to change { User.last&.name }.to '1234'
+        end
       end
     end
   end
 
   describe '#save!' do
-    subject { TestForm.new(args).save! }
+    let(:options) { {} }
+    subject { TestForm.new(args).save!(options) }
 
     context 'with valid values' do
       let(:args) do
@@ -96,6 +132,24 @@ RSpec.describe YAAF::Form do
       it 'does not save the user' do
         expect { subject rescue nil }.not_to change { User.count }
       end
+
+      context 'when validations are skipped' do
+        let(:options) { { validate: false } }
+
+        it 'returns true' do
+          expect(subject).to eq true
+        end
+
+        it 'saves the user' do
+          expect { subject }.to change { User.count }.by 1
+        end
+
+        it 'saves with correct information' do
+          subject
+
+          expect(User.last.name).to eq nil
+        end
+      end
     end
 
     context 'when the form is invalid' do
@@ -109,6 +163,22 @@ RSpec.describe YAAF::Form do
 
       it 'does not save the user' do
         expect { subject rescue nil }.not_to change { User.count }
+      end
+
+      context 'when validations are skipped' do
+        let(:options) { { validate: false } }
+
+        it 'returns true' do
+          expect(subject).to eq true
+        end
+
+        it 'saves the user' do
+          expect { subject }.to change { User.count }.by 1
+        end
+
+        it 'saves with correct information' do
+          expect { subject }.to change { User.last&.name }.to '1234'
+        end
       end
     end
   end
