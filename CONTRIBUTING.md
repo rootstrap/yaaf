@@ -1,15 +1,15 @@
 ## Contributing ##
 
-You can contribute to this repo if you have an issue, found a bug or think there's some functionality required that would add value to the gem. To do so, please check if there's not already an [issue](https://github.com/rootstrap/gem-base/issues) for that, if you find there's not, create a new one with as much detail as possible.
+You can contribute to this repo if you have an issue, found a bug or think there's some functionality required that would add value to the gem. To do so, please check if there's not already an [issue](https://github.com/rootstrap/yaaf/issues) for that, if you find there's not, create a new one with as much detail as possible.
 
 If you want to contribute with code as well, please follow the next steps:
 
-1. Read, understand and agree to our [code of conduct](https://github.com/rootstrap/gem-base/blob/master/CODE_OF_CONDUCT.md)
+1. Read, understand and agree to our [code of conduct](https://github.com/rootstrap/yaaf/blob/master/CODE_OF_CONDUCT.md)
 2. [Fork the repo](https://help.github.com/articles/about-forks/)
 3. Clone the project into your machine:
-`$ git clone git@github.com:[YOUR GITHUB USERNAME]/gem-base.git`
+`$ git clone git@github.com:[YOUR GITHUB USERNAME]/yaaf.git`
 4. Access the repo:
-`$ cd gem-base`
+`$ cd yaaf`
 5. Create your feature/bugfix branch:
 `$ git checkout -b your_new_feature`
 or

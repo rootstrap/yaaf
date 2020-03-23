@@ -15,7 +15,7 @@ SimpleCov.start do
   add_filter '/spec/'
 end
 
-require 'yaaf/base'
+require 'yaaf'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
