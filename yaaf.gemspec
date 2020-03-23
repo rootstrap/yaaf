@@ -34,6 +34,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'reek', '~> 5.6.0'
   spec.add_development_dependency 'rspec', '~> 3.9.0'
   spec.add_development_dependency 'rubocop', '~> 0.80.0'
-  spec.add_development_dependency 'simplecov', '~> 0.18.5'
+  spec.add_development_dependency 'simplecov', '~> 0.17.1'
   spec.add_development_dependency 'sqlite3', '~> 1.4.2'
 end
