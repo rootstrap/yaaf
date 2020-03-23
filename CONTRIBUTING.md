@@ -7,7 +7,7 @@ If you want to contribute with code as well, please follow the next steps:
 1. Read, understand and agree to our [code of conduct](https://github.com/rootstrap/yaaf/blob/master/CODE_OF_CONDUCT.md)
 2. [Fork the repo](https://help.github.com/articles/about-forks/)
 3. Clone the project into your machine:
-`$ git clone git@github.com:[YOUR GITHUB USERNAME]/yaaf.git`
+`$ git clone git@github.com:rootstrap/yaaf.git`
 4. Access the repo:
 `$ cd yaaf`
 5. Create your feature/bugfix branch:
