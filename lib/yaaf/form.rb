@@ -41,10 +41,9 @@ module YAAF
         run_callbacks :save do
           save_models(options)
         end
-
-      rescue Exception => e
-        handle_transaction_rollback(e)
       end
+    rescue Exception => e
+      handle_transaction_rollback(e)
     end
 
     def save_models(options)
