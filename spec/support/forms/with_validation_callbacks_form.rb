@@ -1,5 +1,5 @@
 class WithValidationCallbacksForm < YAAF::Form
-  attr_accessor :name, :before_counter, :after_counter
+  attr_accessor :email, :name, :before_counter, :after_counter
 
   validates :name, format: { with: /[a-zA-Z]+/ }
   before_validation :add_to_before_counter
@@ -12,7 +12,7 @@ class WithValidationCallbacksForm < YAAF::Form
   end
 
   def user
-    @user ||= User.new(name: name)
+    @user ||= User.new(email: email, name: name)
   end
 
   private

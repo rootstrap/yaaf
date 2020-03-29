@@ -4,7 +4,7 @@ RSpec.describe 'Invalid model' do
   let(:options) { {} }
   let(:registration_form) { RegistrationForm.new(args) }
   let(:args) do
-    { name: nil }
+    { email: 'test@example.com', name: nil }
   end
 
   before do

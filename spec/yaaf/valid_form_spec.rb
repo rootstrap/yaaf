@@ -4,7 +4,7 @@ RSpec.describe 'Valid form' do
   let(:options) { {} }
   let(:registration_form) { RegistrationForm.new(args) }
   let(:args) do
-    { name: 'John' }
+    { email: 'test@example.com', name: 'John' }
   end
 
   before do

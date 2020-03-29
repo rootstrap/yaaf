@@ -1,5 +1,5 @@
 class WithCommitCallbacksForm < YAAF::Form
-  attr_accessor :name, :after_counter
+  attr_accessor :email, :name, :after_counter
 
   validates :name, format: { with: /[a-zA-Z]+/ }
   after_commit { @after_counter += 1 }
@@ -11,6 +11,6 @@ class WithCommitCallbacksForm < YAAF::Form
   end
 
   def user
-    @user ||= User.new(name: name)
+    @user ||= User.new(email: email, name: name)
   end
 end

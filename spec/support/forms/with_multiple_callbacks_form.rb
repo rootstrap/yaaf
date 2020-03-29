@@ -1,10 +1,11 @@
 class WithMultipleCallbacksForm < YAAF::Form
-  attr_accessor :name, :result
+  attr_accessor :email, :name, :result
 
   validates :name, format: { with: /[a-zA-Z]+/ }
   after_validation :add_to_after_validation_counter, :add_again_to_after_validation_counter
   after_commit :add_to_after_commit_counter, :add_again_to_after_commit_counter
   before_save :add_to_before_save_counter
+  after_rollback :add_to_after_rollback_counter
   after_save :add_to_after_save_counter
   before_validation :add_to_before_validation_counter
   before_save :add_again_to_before_save_counter
@@ -17,7 +18,7 @@ class WithMultipleCallbacksForm < YAAF::Form
   end
 
   def user
-    @user ||= User.new(name: name)
+    @user ||= User.new(email: email, name: name)
   end
 
   private
@@ -56,5 +57,9 @@ class WithMultipleCallbacksForm < YAAF::Form
 
   def add_again_to_after_commit_counter
     @result[:after_commit_counter] += 1
+  end
+
+  def add_to_after_rollback_counter
+    @result[:after_rollback_counter] += 1
   end
 end

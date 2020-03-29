@@ -1,5 +1,5 @@
 class RegistrationForm < YAAF::Form
-  attr_accessor :name
+  attr_accessor :email, :name
 
   validates :name, format: { with: /[a-zA-Z]+/ }
 
@@ -10,6 +10,6 @@ class RegistrationForm < YAAF::Form
   end
 
   def user
-    @user ||= User.new(name: name)
+    @user ||= User.new(email: email, name: name)
   end
 end
