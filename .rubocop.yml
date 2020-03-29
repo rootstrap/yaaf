@@ -8,6 +8,10 @@ Lint/AmbiguousBlockAssociation:
   Exclude:
     - spec/**/*
 
+Lint/RescueException:
+  Exclude:
+    - lib/yaaf/form.rb
+
 Metrics/AbcSize:
   # The ABC size is a calculated magnitude, so this number can be an Integer or
   # a Float.

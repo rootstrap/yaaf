@@ -4,19 +4,20 @@ module YAAF
   # Parent class for form objects
   class Form
     include ::ActiveModel::Model
+    include ::ActiveModel::Validations::Callbacks
+    include ::ActiveRecord::Transactions
+    define_model_callbacks :save
 
     validate :validate_models
 
     def save(options = {})
       unless options[:validate] == false
-        with_validation_callbacks do
-          return false if invalid?
-        end
+        return false if invalid?
       end
 
-      save_in_transaction(options)
-
-      after_commit
+      run_callbacks :commit do
+        save_in_transaction(options)
+      end
 
       true
     end
@@ -29,16 +30,6 @@ module YAAF
 
     attr_accessor :models
 
-    def after_commit; end
-
-    def after_save; end
-
-    def after_validation; end
-
-    def before_save; end
-
-    def before_validation; end
-
     def promote_errors(model)
       model.errors.each do |attribute, message|
         errors.add(attribute, message)
@@ -47,12 +38,17 @@ module YAAF
 
     def save_in_transaction(options)
       ::ActiveRecord::Base.transaction do
-        before_save
+        run_callbacks :save do
+          save_models(options)
+        end
 
-        models.map { |model| model.save!(options) }
-
-        after_save
+      rescue Exception => e
+        handle_transaction_rollback(e)
       end
+    end
+
+    def save_models(options)
+      models.map { |model| model.save!(options) }
     end
 
     def validate_models
@@ -61,10 +57,9 @@ module YAAF
       end
     end
 
-    def with_validation_callbacks
-      before_validation
-      yield
-      after_validation
+    def handle_transaction_rollback(exception)
+      run_callbacks :rollback
+      raise exception
     end
   end
 end
