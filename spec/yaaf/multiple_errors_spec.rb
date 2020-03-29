@@ -1,19 +1,14 @@
 # frozen_string_literal: true
 
-RSpec.describe 'Invalid form' do
+RSpec.describe 'Multiple errors' do
   let(:options) { {} }
-  let(:registration_form) { RegistrationForm.new(args) }
+  let(:form) { MultipleErrorsForm.new(args) }
   let(:args) do
-    { email: 'test@example.com', name: '1234' }
-  end
-
-  before do
-    expect(registration_form.user).to be_valid
-    expect(registration_form).to_not be_valid
+    { email: 'invalid email' }
   end
 
   describe '#save' do
-    subject { registration_form.save(options) }
+    subject { form.save(options) }
 
     it 'returns false' do
       expect(subject).to eq false
@@ -35,17 +30,16 @@ RSpec.describe 'Invalid form' do
       end
 
       it 'saves with correct information' do
-        expect { subject }.to change {
-          User.last&.email
-        }.to('test@example.com').and change {
-          User.last&.name
-        }.to('1234')
+        subject
+
+        expect(User.last.email).to eq 'invalid email'
+        expect(User.last.name).to eq nil
       end
     end
   end
 
   describe '#save!' do
-    subject { registration_form.save!(options) }
+    subject { form.save!(options) }
 
     it 'raises an exception' do
       expect { subject }.to raise_error(ActiveRecord::RecordNotSaved)
@@ -67,31 +61,30 @@ RSpec.describe 'Invalid form' do
       end
 
       it 'saves with correct information' do
-        expect { subject }.to change {
-          User.last&.email
-        }.to('test@example.com').and change {
-          User.last&.name
-        }.to('1234')
+        subject
+
+        expect(User.last.email).to eq 'invalid email'
+        expect(User.last.name).to eq nil
       end
     end
   end
 
   describe '#valid?' do
-    subject { registration_form.valid? }
+    subject { form.valid? }
 
     it { is_expected.to be false }
   end
 
   describe '#invalid?' do
-    subject { registration_form.invalid? }
+    subject { form.invalid? }
 
     it { is_expected.to be true }
   end
 
   describe '#errors' do
     subject do
-      registration_form.valid?
-      registration_form.errors
+      form.valid?
+      form.errors
     end
 
     it 'returns the correct class' do
@@ -99,7 +92,10 @@ RSpec.describe 'Invalid form' do
     end
 
     it 'returns the form errors messages' do
-      expect(subject.messages).to eq(name: ['is invalid'])
+      expect(subject.messages).to eq(
+        email: ['is invalid'],
+        name: ["can't be blank", 'is invalid']
+      )
     end
   end
 end

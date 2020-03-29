@@ -36,6 +36,7 @@ RSpec.describe 'Invalid model' do
       it 'saves with correct information' do
         subject
 
+        expect(User.last.email).to eq 'test@example.com'
         expect(User.last.name).to eq nil
       end
     end
@@ -66,8 +67,36 @@ RSpec.describe 'Invalid model' do
       it 'saves with correct information' do
         subject
 
+        expect(User.last.email).to eq 'test@example.com'
         expect(User.last.name).to eq nil
       end
+    end
+  end
+
+  describe '#valid?' do
+    subject { registration_form.valid? }
+
+    it { is_expected.to be false }
+  end
+
+  describe '#invalid?' do
+    subject { registration_form.invalid? }
+
+    it { is_expected.to be true }
+  end
+
+  describe '#errors' do
+    subject do
+      registration_form.valid?
+      registration_form.errors
+    end
+
+    it 'returns the correct class' do
+      expect(subject.class).to eq(ActiveModel::Errors)
+    end
+
+    it 'returns the form errors messages' do
+      expect(subject.messages).to eq(name: ["can't be blank"])
     end
   end
 end

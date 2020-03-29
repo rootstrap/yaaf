@@ -1,7 +1,8 @@
-class RegistrationForm < YAAF::Form
+class MultipleErrorsForm < YAAF::Form
   attr_accessor :email, :name
 
-  validates :name, format: { with: /[a-zA-Z]+/ }, allow_blank: true
+  validates :name, format: { with: /[a-zA-Z]+/ }
+  validates :email, format: { with: /\S+@\S+\.\S+/ }
 
   def initialize(args)
     super(args)
