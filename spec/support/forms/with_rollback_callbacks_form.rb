@@ -1,8 +1,8 @@
-class WithCommitCallbacksForm < YAAF::Form
+class WithRollbackCallbacksForm < YAAF::Form
   attr_accessor :name, :after_counter
 
   validates :name, format: { with: /[a-zA-Z]+/ }
-  after_commit { @after_counter += 1 }
+  after_rollback { @after_counter += 1 }
 
   def initialize(args)
     super(args)
