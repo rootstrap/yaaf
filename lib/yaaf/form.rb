@@ -5,8 +5,8 @@ module YAAF
   class Form
     include ::ActiveModel::Model
     include ::ActiveModel::Validations::Callbacks
+    include ::ActiveRecord::Transactions
     define_model_callbacks :save
-    define_model_callbacks :commit, only: :after
 
     validate :validate_models
 
@@ -39,15 +39,27 @@ module YAAF
     def save_in_transaction(options)
       ::ActiveRecord::Base.transaction do
         run_callbacks :save do
-          models.map { |model| model.save!(options) }
+          save_models(options)
         end
+
+      rescue Exception => e
+        handle_transaction_rollback(e)
       end
+    end
+
+    def save_models(options)
+      models.map { |model| model.save!(options) }
     end
 
     def validate_models
       models.each do |model|
         promote_errors(model) if model.invalid?
       end
+    end
+
+    def handle_transaction_rollback(exception)
+      run_callbacks :rollback
+      raise exception
     end
   end
 end
