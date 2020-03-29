@@ -1,4 +1,4 @@
-name: Tests and Code Analysis
+name: CI
 
 on: [push]
 
