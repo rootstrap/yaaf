@@ -88,4 +88,74 @@ RSpec.describe 'Multiple callbacks' do
       end
     end
   end
+
+  describe '#valid?' do
+    subject { form.valid? }
+
+    context 'when the form is valid' do
+      it 'increments the correct values' do
+        expect { subject }.to change { form.result }.to(
+          after_validation_counter: 3,
+          before_validation_counter: 1
+        )
+      end
+    end
+
+    context 'when the form is invalid' do
+      let(:name) { '1234' }
+
+      it 'increments the correct values' do
+        expect { subject }.to change { form.result }.to(
+          after_validation_counter: 3,
+          before_validation_counter: 1
+        )
+      end
+    end
+
+    context 'when there is a DB exception' do
+      let(:email) { nil }
+
+      it 'increments the correct values' do
+        expect { subject rescue nil }.to change { form.result }.to(
+          after_validation_counter: 3,
+          before_validation_counter: 1
+        )
+      end
+    end
+  end
+
+  describe '#invalid?' do
+    subject { form.invalid? }
+
+    context 'when the form is valid' do
+      it 'increments the correct values' do
+        expect { subject }.to change { form.result }.to(
+          after_validation_counter: 3,
+          before_validation_counter: 1
+        )
+      end
+    end
+
+    context 'when the form is invalid' do
+      let(:name) { '1234' }
+
+      it 'increments the correct values' do
+        expect { subject }.to change { form.result }.to(
+          after_validation_counter: 3,
+          before_validation_counter: 1
+        )
+      end
+    end
+
+    context 'when there is a DB exception' do
+      let(:email) { nil }
+
+      it 'increments the correct values' do
+        expect { subject rescue nil }.to change { form.result }.to(
+          after_validation_counter: 3,
+          before_validation_counter: 1
+        )
+      end
+    end
+  end
 end

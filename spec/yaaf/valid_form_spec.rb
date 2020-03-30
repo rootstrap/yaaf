@@ -23,7 +23,11 @@ RSpec.describe 'Valid form' do
     end
 
     it 'saves with correct information' do
-      expect { subject }.to change { User.last&.name }.to 'John'
+      expect { subject }.to change {
+        User.last&.email
+      }.to('test@example.com').and change {
+        User.last&.name
+      }.to('John')
     end
   end
 
@@ -39,7 +43,38 @@ RSpec.describe 'Valid form' do
     end
 
     it 'saves with correct information' do
-      expect { subject }.to change { User.last&.name }.to 'John'
+      expect { subject }.to change {
+        User.last&.email
+      }.to('test@example.com').and change {
+        User.last&.name
+      }.to('John')
+    end
+  end
+
+  describe '#valid?' do
+    subject { registration_form.valid? }
+
+    it { is_expected.to be true }
+  end
+
+  describe '#invalid?' do
+    subject { registration_form.invalid? }
+
+    it { is_expected.to be false }
+  end
+
+  describe '#errors' do
+    subject do
+      registration_form.valid?
+      registration_form.errors
+    end
+
+    it 'returns the correct class' do
+      expect(subject.class).to eq(ActiveModel::Errors)
+    end
+
+    it 'is empty' do
+      expect(subject.messages).to be_empty
     end
   end
 end

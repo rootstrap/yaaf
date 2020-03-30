@@ -60,4 +60,56 @@ RSpec.describe 'Commit callbacks' do
       end
     end
   end
+
+  describe '#valid?' do
+    subject { form.valid? }
+
+    context 'when the form is valid' do
+      it 'does not increment the after_counter' do
+        expect { subject }.to_not change { form.after_counter }
+      end
+    end
+
+    context 'when the form is invalid' do
+      let(:name) { '1234' }
+
+      it 'does not increment the after_counter' do
+        expect { subject }.to_not change { form.after_counter }
+      end
+    end
+
+    context 'when there is a DB exception' do
+      let(:email) { nil }
+
+      it 'does not increment the after_counter' do
+        expect { subject rescue nil }.to_not change { form.after_counter }
+      end
+    end
+  end
+
+  describe '#invalid?' do
+    subject { form.invalid? }
+
+    context 'when the form is valid' do
+      it 'does not increment the after_counter' do
+        expect { subject }.to_not change { form.after_counter }
+      end
+    end
+
+    context 'when the form is invalid' do
+      let(:name) { '1234' }
+
+      it 'does not increment the after_counter' do
+        expect { subject }.to_not change { form.after_counter }
+      end
+    end
+
+    context 'when there is a DB exception' do
+      let(:email) { nil }
+
+      it 'does not increment the after_counter' do
+        expect { subject rescue nil }.to_not change { form.after_counter }
+      end
+    end
+  end
 end
