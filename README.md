@@ -1,6 +1,6 @@
 # YAAF
 
-[![Build Status](https://travis-ci.com/rootstrap/yaaf.svg?branch=master)](https://travis-ci.com/rootstrap/yaaf)
+![CI](https://github.com/rootstrap/yaaf/workflows/CI/badge.svg)
 [![Maintainability](https://api.codeclimate.com/v1/badges/c3dea064e1003b700260/maintainability)](https://codeclimate.com/github/rootstrap/yaaf/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/c3dea064e1003b700260/test_coverage)](https://codeclimate.com/github/rootstrap/yaaf/test_coverage)
 
