@@ -4,7 +4,7 @@
 
 ## Usage
 
-Pass a YAAF::Form object instance to the `simple_form_for` helper method.
+Pass a `YAAF::Form` object instance to the `simple_form_for` helper method.
 
 For example, in a library management system (a pretty miminal one), the form to create books will look like this:
 
@@ -21,7 +21,7 @@ class BookForm < YAAF::Form
   end
 
   def book
-    @book|| = Book.new(name: name, isbn: isbn)
+    @book ||= Book.new(name: name, isbn: isbn)
   end
 end
 ```
