@@ -1,6 +1,7 @@
 require_relative 'forms/registration_form'
 require_relative 'forms/multiple_errors_form'
 require_relative 'forms/with_commit_callbacks_form'
+require_relative 'forms/with_model_callbacks_form'
 require_relative 'forms/with_multiple_callbacks_form'
 require_relative 'forms/with_rollback_callbacks_form'
 require_relative 'forms/with_save_callbacks_form'

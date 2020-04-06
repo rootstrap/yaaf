@@ -16,7 +16,7 @@ module YAAF
       end
 
       run_callbacks :commit do
-        save_in_transaction(options)
+        save_in_transaction
       end
 
       true
@@ -36,18 +36,18 @@ module YAAF
       end
     end
 
-    def save_in_transaction(options)
+    def save_in_transaction
       ::ActiveRecord::Base.transaction do
         run_callbacks :save do
-          save_models(options)
+          save_models
         end
       end
     rescue Exception => e
       handle_transaction_rollback(e)
     end
 
-    def save_models(options)
-      models.map { |model| model.save!(options) }
+    def save_models
+      models.map { |model| model.save!(validate: false) }
     end
 
     def validate_models
