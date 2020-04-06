@@ -3,9 +3,9 @@
 require_relative 'lib/yaaf/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'YAAF'
+  spec.name          = 'yaaf'
   spec.version       = YAAF::VERSION
-  spec.authors       = ['Juan Manuel Ramallo']
+  spec.authors       = ['Juan Manuel Ramallo', 'Santiago Bartesaghi']
   spec.email         = ['juan.ramallo@rootstrap.com']
 
   spec.summary       = 'Easing the form object pattern in Rails applications.'
