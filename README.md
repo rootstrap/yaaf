@@ -168,7 +168,7 @@ When initializing a `YAAF` form object, there are two things to keep in mind
 
 The `.valid?` method will perform both the form object validations and the models validations. It will return `true` or `false` and store the errors in the form object.
 
-By default `YAAF` form objects will store model errors in the form object under the same key. For example if a model has a `email` attribute that errored, the form object will provide the an error under the `email` key (e.g. `form_object.errors[:email]`).
+By default `YAAF` form objects will store model errors in the form object under the same key. For example if a model has an `email` attribute that had an error, the form object will provide an error under the `email` key (e.g. `form_object.errors[:email]`).
 
 ### #invalid?
 
@@ -222,7 +222,7 @@ class RegistrationForm < YAAF::Form
 end
 ```
 
-Available callbacks are:
+Available callbacks are (listed in execution order):
 - `before_validation`
 - `after_validation`
 - `before_save`
