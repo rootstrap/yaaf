@@ -37,14 +37,14 @@ Form Objects is a design pattern that allows us to:
 3. Keep business logic validations out of models
 
 There are some other form objects gems but we felt none of them provided us all the features that we expected:
-1. Form objects behaves like a Rails model
-2. Easy to customize
-3. Simple and easy to understand implementation
+1. Form objects that behaves like Rails models
+2. Simple to use and to understand the implementation (no magic)
+3. Easy to customize
 4. Gem is well tested and maintained
 
 For this reason we decided to build our own Form Object implementation. After several months in production without issues we decided to extract it into a gem to share it with the community.
 
-If you want to learn more about Form Objects you can check out [these great articles](#links)
+If you want to learn more about Form Objects you can check out [these great articles](#links).
 
 ## Installation
 
@@ -63,6 +63,8 @@ Or install it yourself as:
     $ gem install yaaf
 
 ## Usage
+
+In the following sections we explain some basic usage and the API provided by the gem. You can also find some recipes [here](https://rootstrap.github.io/yaaf).
 
 ### Setting up a form object
 
@@ -166,21 +168,21 @@ When initializing a `YAAF` form object, there are two things to keep in mind
 
 ### #valid?
 
-The `.valid?` method will perform both the form object validations and the models validations. It will return `true` or `false` and store the errors in the form object.
+The `#valid?` method will perform both the form object validations and the models validations. It will return `true` or `false` and store the errors in the form object.
 
 By default `YAAF` form objects will store model errors in the form object under the same key. For example if a model has an `email` attribute that had an error, the form object will provide an error under the `email` key (e.g. `form_object.errors[:email]`).
 
 ### #invalid?
 
-The `.invalid?` method is exactly the same as the `.valid?` method but will return the opposite boolean value.
+The `#invalid?` method is exactly the same as the `.valid?` method but will return the opposite boolean value.
 
 ### #errors
 
-The `.errors` method will return an `ActiveModel::Errors` object such as any other `ActiveModel` model.
+The `#errors` method will return an `ActiveModel::Errors` object such as any other `ActiveModel` model.
 
 ### #save
 
-The `.save` method will run validations. If it's invalid it will return `false`, otherwise it will save all the models within a DB transaction and return `true`.
+The `#save` method will run validations. If it's invalid it will return `false`, otherwise it will save all the models within a DB transaction and return `true`.
 
 Defined callbacks will be called in the following order:
 - `before_validation`
@@ -194,7 +196,7 @@ Options:
 
 ### #save!
 
-The `.save!` method is exactly the same as the `.save` method, just that if it is invalid it will raise an exception.
+The `#save!` method is exactly the same as the `.save` method, just that if it is invalid it will raise an exception.
 
 ### Validations
 
@@ -231,6 +233,7 @@ Available callbacks are (listed in execution order):
 
 ## Links
 
+- [How to improve maintainability in Rails applications using patterns. Part I](https://www.rootstrap.com/blog/2020/02/14/how-to-improve-maintainability-in-rails-applications-using-patterns-part-i/)
 - [7 Patterns to Refactor Fat ActiveRecord Models](https://codeclimate.com/blog/7-ways-to-decompose-fat-activerecord-models/)
 - [ActiveModel Form Objects](https://thoughtbot.com/blog/activemodel-form-objects)
 - [Form Objects Design Pattern](https://gorails.com/episodes/form-objects-design-pattern)
