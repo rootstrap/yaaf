@@ -22,6 +22,7 @@ We were going to name this gem `ActiveForm` to follow Rails naming conventions b
   - [#save!](#save!)
   - [Validations](#validations)
   - [Callbacks](#callbacks)
+- [Sample app](#sample-app)
 - [Links](#links)
 - [Development](#development)
 - [Contributing](#contributing)
@@ -230,6 +231,10 @@ Available callbacks are (listed in execution order):
 - `before_save`
 - `after_save`
 - `after_commit/after_rollback`
+
+## Sample app
+
+You can find a sample app making use of the gem [here](https://yaaf-examples.herokuapp.com). Its code is also open source, and you can find it [here](https://github.com/rootstrap/yaaf-examples).
 
 ## Links
 
