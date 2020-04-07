@@ -59,8 +59,24 @@ In order to make use of translations correctly, we should pass an `as` value to 
   ...
 ```
 
-If you'd rather not modify your forms with this attribute, you can override the `model_name` method in your form object,
-so that Simple Form is able to look for the correct translations.
+So you now can write your translations as:
+
+```yaml
+# app/config/locales/simple_form.en.yml
+
+en:
+  simple_form:
+    ...
+
+    labels:
+      book:
+        name: Book Name
+        isbn: International Standard Book Number
+```
+
+When using the `f.submit` helper method from Simple Form, the method `model_name` will be used to display the
+button's text. If this is not defined it will display: "Create Book Form".
+You can use a translation directly in the view to avoid overriding this method.
 
 ```ruby
 # app/forms/book_form.rb
