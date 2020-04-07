@@ -1,5 +1,11 @@
-Documentation:
-  Enabled: false
+Layout/LineLength:
+  Max: 100
+  # To make it possible to copy or click on URIs in the code, we allow lines
+  # containing a URI to be longer than Max.
+  AllowURI: true
+  URISchemes:
+    - http
+    - https
 
 Layout/SpaceBeforeFirstArg:
   Exclude:
@@ -46,15 +52,6 @@ Metrics/ModuleLength:
   CountComments: false  # count full line comments?
   Max: 200
 
-Metrics/LineLength:
-  Max: 100
-  # To make it possible to copy or click on URIs in the code, we allow lines
-  # containing a URI to be longer than Max.
-  AllowURI: true
-  URISchemes:
-    - http
-    - https
-
 Metrics/ParameterLists:
   Max: 5
   CountKeywordArgs: true
@@ -62,8 +59,20 @@ Metrics/ParameterLists:
 Metrics/PerceivedComplexity:
   Max: 12
 
+Style/Documentation:
+  Enabled: false
+
 Style/FrozenStringLiteralComment:
   Enabled: false
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
 
 Style/ModuleFunction:
   Enabled: false
