@@ -246,6 +246,7 @@ You can find a sample app making use of the gem [here](https://yaaf-examples.her
 - [Validating Form Objects](https://revs.runtime-revolution.com/validating-form-objects-8058fefc7b89)
 - [Disciplined Rails: Form Object Techniques & Patterns — Part 1](https://medium.com/@jaryl/disciplined-rails-form-object-techniques-patterns-part-1-23cfffcaf429)
 - [Complex form objects with Rails](https://www.codementor.io/@victor_hazbun/complex-form-objects-in-rails-qval6b8kt)
+- [How to keep your controllers thin with form objects](https://ducktypelabs.com/how-to-keep-your-controllers-thin-with-form-objects)
 
 ## Development
 
