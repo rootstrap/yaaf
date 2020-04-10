@@ -1,12 +1,12 @@
-# YAAF
-
-![CI](https://github.com/rootstrap/yaaf/workflows/CI/badge.svg)
-[![Maintainability](https://api.codeclimate.com/v1/badges/c3dea064e1003b700260/maintainability)](https://codeclimate.com/github/rootstrap/yaaf/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/c3dea064e1003b700260/test_coverage)](https://codeclimate.com/github/rootstrap/yaaf/test_coverage)
+![YAAF](docs/images/logo.png)
 
 YAAF (Yet Another Active Form) is a gem that let you create form objects in an easy and Rails friendly way. It makes use of `ActiveRecord` and `ActiveModel` features in order to provide you with a form object that behaves pretty much like a Rails model, and still be completely configurable.
 
 We were going to name this gem `ActiveForm` to follow Rails naming conventions but given there are a lot of form object gems named like that we preferred to go with `YAAF`.
+
+![CI](https://github.com/rootstrap/yaaf/workflows/CI/badge.svg)
+[![Maintainability](https://api.codeclimate.com/v1/badges/c3dea064e1003b700260/maintainability)](https://codeclimate.com/github/rootstrap/yaaf/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/c3dea064e1003b700260/test_coverage)](https://codeclimate.com/github/rootstrap/yaaf/test_coverage)
 
 ## Table of Contents
 
@@ -269,4 +269,4 @@ Everyone interacting in the YAAF project's codebases, issue trackers, chat rooms
 
 YAAF is maintained by [Rootstrap](http://www.rootstrap.com) with the help of our [contributors](https://github.com/rootstrap/yaaf/contributors).
 
-[<img src="https://s3-us-west-1.amazonaws.com/rootstrap.com/img/rs.png" width="100"/>](http://www.rootstrap.com)
+[![YAAF](docs/images/footer.png)](http://www.rootstrap.com)
