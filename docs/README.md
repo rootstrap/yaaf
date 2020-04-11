@@ -9,6 +9,7 @@
 - [YAAF with Simple Form](recipes/simple_form.md)
 - [YAAF with Devise](recipes/devise.md)
 - [YAAF with nested forms](recipes/nested_forms.md)
+- [YAAF with JSON API](recipes/json_api.md)
 
 ## Credits
 
