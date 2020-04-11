@@ -54,13 +54,13 @@ If you want to learn more about Form Objects you can check out [these great arti
 
 - It provides a similar API to `ActiveModel` models so you can treat them interchangeably.
 
-- You can customize it 100%. We promote having your own `ApplicationForm` which inherits from `YAAF::Form` and make the customizations you'd like for your app.
+- You can customize it 100%. We encourage you to have your own `ApplicationForm` which inherits from `YAAF::Form` and make the customizations you'd like for your app.
 
 - It helps decoupling the frontend from the database. This is particularly important when using Rails as a JSON API with a frontend in React/Ember/Vue/Angular/you name it. If you were to use `accepts_nested_attributes_for` your frontend would need to know your database structure in order to build the request. With `YAAF` you can provide a the interface you think it's best.
 
 - It easily supports nested models, collection of models and associated models. You have full control on their creation.
 
-- It helps you keep your models, views or controllers thin by providing a better place where to put business logic. In the end, this will raise the quality of your codebase and make it more maintainable and extensible.
+- It helps you keep your models, views and controllers thin by providing a better place where to put business logic. In the end, this will improve the quality of your codebase and make it easier to maintain and extend.
 
 - It is an abstraction from production code. It has been working well for us, I'm confident it will work well for you too :)
 
