@@ -11,6 +11,7 @@ We were going to name this gem `ActiveForm` to follow Rails naming conventions b
 ## Table of Contents
 
 - [Motivation](#motivation)
+  - [Why YAAF?](#why-yaaf)
 - [Installation](#installation)
 - [Usage](#usage)
   - [Setting up a form object](#setting-up-a-form-object)
@@ -46,6 +47,22 @@ There are some other form objects gems but we felt none of them provided us all 
 For this reason we decided to build our own Form Object implementation. After several months in production without issues we decided to extract it into a gem to share it with the community.
 
 If you want to learn more about Form Objects you can check out [these great articles](#links).
+
+### Why YAAF?
+
+- It is [64 lines long](https://github.com/rootstrap/yaaf/blob/master/lib/yaaf/form.rb#L64). As you can imagine, we did no magic in such a few lines of code, we just leveraged Rails modules in order to provide our form objects with a Rails-like behavior. You can review the code, it's easy to understand.
+
+- It provides a similar API to `ActiveModel` models so you can treat them interchangeably.
+
+- You can customize it 100%. We promote having your own `ApplicationForm` which inherits from `YAAF::Form` and make the customizations you'd like for your app.
+
+- It helps decoupling the frontend from the database. This is particularly important when using Rails as a JSON API with a frontend in React/Ember/Vue/Angular/you name it. If you were to use `accepts_nested_attributes_for` your frontend would need to know your database structure in order to build the request. With `YAAF` you can provide a the interface you think it's best.
+
+- It easily supports nested models, collection of models and associated models. You have full control on their creation.
+
+- It helps you keep your models, views or controllers thin by providing a better place where to put business logic. In the end, this will raise the quality of your codebase and make it more maintainable and extensible.
+
+- It is an abstraction from production code. It has been working well for us, I'm confident it will work well for you too :)
 
 ## Installation
 
