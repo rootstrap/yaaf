@@ -111,6 +111,7 @@ By doing that you can work with your form object in your controller such as you'
 class RegistrationsController < ApplicationController
   def create
     registration_form = RegistrationForm.new(user_attributes: user_params)
+    registration = registration_form.registration
 
     if registration_form.save
       redirect_to registration.user
