@@ -113,7 +113,7 @@ class RegistrationsController < ApplicationController
     registration_form = RegistrationForm.new(user_attributes: user_params)
 
     if registration_form.save
-      redirect_to registration.user
+      redirect_to registration_form.user
     else
       render :new
     end
