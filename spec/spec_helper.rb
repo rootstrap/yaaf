@@ -8,14 +8,14 @@ require 'database_cleaner/active_record'
 
 ActiveRecord::Base.establish_connection adapter: 'sqlite3', database: ':memory:'
 
+SimpleCov.start do
+  add_filter '/spec/'
+end
+
 require 'yaaf'
 load File.dirname(__FILE__) + '/support/schema.rb'
 require File.dirname(__FILE__) + '/support/models.rb'
 require File.dirname(__FILE__) + '/support/forms.rb'
-
-SimpleCov.start do
-  add_filter '/spec/'
-end
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
