@@ -36,7 +36,6 @@ Some helpful guides that will help you know how we work:
 
 For more information or guides like the ones mentioned above, please check our [tech guides](https://github.com/rootstrap/tech-guides). Keep in mind that the more you know about these guides, the easier it will be for your code to get approved and merged.
 
-Note: We work with one commit per pull request, so if you make your commit and realize you were missing something or want to add something more to it, don't create a new commit with the changes, but use `$ git commit --amend` instead. This same principle also applies for when changes are requested on an open pull request.
-
+Note: You can push as many commits as you want when working on a pull request, we just ask that they are descriptive and tell a story. Try to open a pull request with just one commit but if you think you need to divide what you did into more commits to convey what you are trying to do go for it.
 
 Thank you very much for your time and for considering helping in this project.
