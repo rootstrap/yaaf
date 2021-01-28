@@ -30,6 +30,7 @@ module YAAF
 
     attr_accessor :models
 
+    # :reek:DuplicateMethodCall
     def promote_errors(model)
       if rails_version_less_than_6_1?
         model.errors.each do |attribute, message|
