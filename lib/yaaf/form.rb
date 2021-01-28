@@ -68,7 +68,8 @@ module YAAF
     end
 
     def rails_version_less_than_6_1?
-      Gem::Version.new(ActiveModel::VERSION) < Gem::Version.new('6.1')
+      ActiveModel::VERSION::MAJOR < 6 ||
+        ActiveModel::VERSION::MAJOR == 6 && ActiveModel::VERSION::MINOR.zero?
     end
   end
 end
