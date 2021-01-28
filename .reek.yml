@@ -18,7 +18,7 @@ detectors:
     min_clump_size: 2
   DuplicateMethodCall:
     enabled: true
-    exclude: []
+    exclude: ['YAAF::Form#promote_errors']
     max_calls: 1
     allow_calls: []
   FeatureEnvy:
