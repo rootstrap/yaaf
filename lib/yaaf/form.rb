@@ -31,8 +31,14 @@ module YAAF
     attr_accessor :models
 
     def promote_errors(model)
-      model.errors.each do |attribute, message|
-        errors.add(attribute, message)
+      if rails_version_less_than_6_1?
+        model.errors.each do |attribute, message|
+          errors.add(attribute, message)
+        end
+      else
+        model.errors.each do |model_error|
+          errors.add(model_error.attribute, model_error.message)
+        end
       end
     end
 
@@ -59,6 +65,11 @@ module YAAF
     def handle_transaction_rollback(exception)
       run_callbacks :rollback
       raise exception
+    end
+
+    def rails_version_less_than_6_1?
+      ActiveModel::VERSION::MAJOR < 6 ||
+        ActiveModel::VERSION::MAJOR == 6 && ActiveModel::VERSION::MINOR.zero?
     end
   end
 end
