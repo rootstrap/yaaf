@@ -6,7 +6,7 @@
 
 Pass a `YAAF::Form` object instance to the `simple_form_for` helper method.
 
-For example, in a library management system (a pretty miminal one), the form to create books will look like this:
+For example, in a library management system (a pretty minimal one), the form to create books will look like this:
 
 ```ruby
 # app/forms/book_form.rb
@@ -94,7 +94,7 @@ More info about how Simple Form translates forms [here](https://github.com/heart
 
 ## Persisted?
 
-Define the `persisted?` method in your form object to let Simple Form know if the object is being created or upated.
+Define the `persisted?` method in your form object to let Simple Form know if the object is being created or updated.
 
 ```ruby
 # app/forms/book_form.rb
