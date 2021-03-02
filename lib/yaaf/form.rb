@@ -32,12 +32,20 @@ module YAAF
 
     def promote_errors(model)
       if rails_version_less_than_6_1?
-        model.errors.each do |attribute, message|
-          errors.add(attribute, message)
-        end
+        promote_legacy_errors(model)
       else
         model.errors.each do |model_error|
-          errors.add(model_error.attribute, model_error.message)
+          errors.add(model_error.attribute, model_error.type, **model_error.options)
+        end
+      end
+    end
+
+    def promote_legacy_errors(model)
+      model.errors.details.each do |attribute, details|
+        details.each do |detail|
+          options = detail.except(:error)
+
+          errors.add(attribute, detail[:error], **options)
         end
       end
     end
