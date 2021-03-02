@@ -9,21 +9,21 @@ jobs:
     strategy:
       matrix:
         gemfile: [rails_4.0.0.gemfile, rails_5.0.0.gemfile, rails_5.2.3.gemfile, rails_6.0.0.gemfile, rails_6.1.0.gemfile, rails_main.gemfile]
-        ruby_version: [2.4.x, 2.5.x, 2.6.x, 2.7.x]
+        ruby_version: [2.4, 2.5, 2.6, 2.7]
         exclude:
           - gemfile: rails_main.gemfile
-            ruby_version: 2.4.x
+            ruby_version: 2.4
           - gemfile: rails_6.0.0.gemfile
-            ruby_version: 2.4.x
+            ruby_version: 2.4
           - gemfile: rails_6.1.0.gemfile
-            ruby_version: 2.4.x
+            ruby_version: 2.4
     steps:
     - uses: actions/checkout@v2
     - name: Setup Ruby
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.ruby_version }}
-    - name: Update rubygems when testing with Ruby 2.4.x
+    - name: Update rubygems when testing with Ruby 2.4
       if: startsWith(matrix.ruby_version, '2.4')
       run: |
         gem update --system --no-document
