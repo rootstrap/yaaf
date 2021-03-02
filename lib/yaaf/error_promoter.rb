@@ -11,8 +11,7 @@ module YAAF
     end
 
     def self.legacy_promoter?
-      ActiveModel::VERSION::MAJOR < 6 ||
-        ActiveModel::VERSION::MAJOR == 6 && ActiveModel::VERSION::MINOR.zero?
+      ActiveModel.version < Gem::Version.new('6.1')
     end
 
     module LegacyPromoter
