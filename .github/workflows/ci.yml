@@ -13,6 +13,10 @@ jobs:
         exclude:
           - gemfile: rails_main.gemfile
             ruby_version: 2.4
+          - gemfile: rails_main.gemfile
+            ruby_version: 2.5
+          - gemfile: rails_main.gemfile
+            ruby_version: 2.6
           - gemfile: rails_6.0.0.gemfile
             ruby_version: 2.4
           - gemfile: rails_6.1.0.gemfile
