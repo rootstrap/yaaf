@@ -21,6 +21,8 @@ jobs:
             ruby_version: 2.4
           - gemfile: rails_6.1.0.gemfile
             ruby_version: 2.4
+    env:
+      BUNDLE_GEMFILE: spec/gemfiles/${{ matrix.gemfile }}
     steps:
     - uses: actions/checkout@v2
     - name: Setup Ruby
