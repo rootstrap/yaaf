@@ -39,7 +39,7 @@ Form Objects is a design pattern that allows us to:
 3. Keep business logic validations out of models
 
 There are some other form objects gems but we felt none of them provided us all the features that we expected:
-1. Form objects that behaves like Rails models
+1. Form objects that behave like Rails models
 2. Simple to use and to understand the implementation (no magic)
 3. Easy to customize
 4. Gem is well tested and maintained
