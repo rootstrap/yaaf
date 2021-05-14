@@ -231,7 +231,7 @@ end
 
 ### Callbacks
 
-`YAAF` form objects support validations the same way as `ActiveModel` models. For example:
+`YAAF` form objects support callbacks the same way as `ActiveModel` models. For example:
 
 ```ruby
 class RegistrationForm < YAAF::Form
