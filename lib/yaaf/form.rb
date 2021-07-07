@@ -11,9 +11,24 @@ module YAAF
     validate :validate_models
 
     def save(options = {})
-      unless options[:validate] == false
-        return false if invalid?
-      end
+      save_form(options)
+    rescue ActiveRecord::RecordInvalid,
+           ActiveRecord::RecordNotSaved,
+           ActiveModel::ValidationError
+
+      false
+    end
+
+    def save!(options = {})
+      save_form(options) || raise(ActiveRecord::RecordNotSaved.new('Failed to save the form', self))
+    end
+
+    private
+
+    attr_accessor :models
+
+    def save_form(options)
+      validate! unless options[:validate] == false
 
       run_callbacks :commit do
         save_in_transaction(options)
@@ -21,14 +36,6 @@ module YAAF
 
       true
     end
-
-    def save!(options = {})
-      save(options) || raise(ActiveRecord::RecordNotSaved.new('Failed to save the form', self))
-    end
-
-    private
-
-    attr_accessor :models
 
     def save_in_transaction(options)
       ::ActiveRecord::Base.transaction do

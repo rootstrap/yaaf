@@ -48,7 +48,7 @@ RSpec.describe 'Invalid form' do
     subject { registration_form.save!(options) }
 
     it 'raises an exception' do
-      expect { subject }.to raise_error(ActiveRecord::RecordNotSaved)
+      expect { subject }.to raise_error(ActiveModel::ValidationError)
     end
 
     it 'does not save the user' do

@@ -8,4 +8,9 @@ ActiveRecord::Schema.define do
 
     t.timestamps
   end
+
+  create_table :comments, force: true do |t|
+    t.integer :user_id, null: false
+    t.string :text
+  end
 end
