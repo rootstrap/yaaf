@@ -20,7 +20,7 @@ module YAAF
     end
 
     def save!(options = {})
-      save_form(options) || raise(ActiveRecord::RecordNotSaved.new('Failed to save the form', self))
+      save_form(options)
     end
 
     private
