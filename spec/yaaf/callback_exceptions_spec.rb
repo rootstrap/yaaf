@@ -1,44 +1,71 @@
 # frozen_string_literal: true
 
 RSpec.describe 'Callback Exceptions' do
+  RESCUEABLE_EXCEPTIONS = [
+    ActiveRecord::RecordInvalid,
+    ActiveRecord::RecordNotSaved,
+    ActiveModel::ValidationError
+  ].freeze
+
   let(:options) { {} }
-  let(:args) do
-    {
-      email: 'steve@example.com',
-      name: 'Steve Rogers',
-      comment: comment
-    }
+  let(:args) { {} }
+  let(:form) do
+    WithCallbackExceptionRaising.new(args)
   end
-  let(:form) { WithCallbackFormSaving.new(args) }
 
   describe '#save' do
     subject { form.save(options) }
 
-    context 'when the callback object is valid' do
-      let(:comment) { 'Avengers, Assemble!' }
-
-      it 'saves the model and callback object' do
+    context 'without a callback exception raised' do
+      it 'saves the model' do
         expect { subject }
           .to change { User.count }
           .by(1)
-          .and change { Comment.count }
-          .by(1)
+      end
+
+      it 'returns true' do
+        expect(subject).to eq true
       end
     end
 
-    context 'when the callback object is not valid' do
-      let(:comment) { '' }
+    context 'with a rescueable exception' do
+      RESCUEABLE_EXCEPTIONS.each do |exception|
+        context "when an #{exception} is raised" do
+          let(:args) do
+            {
+              callback_exception: exception
+            }
+          end
 
-      it 'does not save the model or the callback object' do
-        expect { subject }
+          it 'does not save the model' do
+            expect { subject }
+              .to change { User.count }
+              .by(0)
+          end
+
+          it 'returns false' do
+            expect(subject).to eq false
+          end
+        end
+      end
+    end
+
+    context 'with a non-rescuable exception' do
+      let(:exception) { ActiveRecord::NotNullViolation }
+      let(:args) do
+        {
+          callback_exception: exception
+        }
+      end
+
+      it 'does not save the model' do
+        expect { subject rescue nil }
           .to change { User.count }
-          .by(0)
-          .and change { Comment.count }
           .by(0)
       end
 
-      it 'returns false' do
-        expect(subject).to eq false
+      it 'raises the exception' do
+        expect { subject }.to raise_exception(exception)
       end
     end
   end
@@ -46,23 +73,56 @@ RSpec.describe 'Callback Exceptions' do
   describe '#save!' do
     subject { form.save!(options) }
 
-    context 'when the after_save callback object is valid' do
-      let(:comment) { 'Avengers, Assemble!' }
-
-      it 'saves the model and callback object' do
+    context 'without a callback exception raised' do
+      it 'saves the model' do
         expect { subject }
           .to change { User.count }
           .by(1)
-          .and change { Comment.count }
-          .by(1)
+      end
+
+      it 'returns true' do
+        expect(subject).to eq true
       end
     end
 
-    context 'when the callback object is not valid' do
-      let(:comment) { '' }
+    context 'with a rescueable exception' do
+      RESCUEABLE_EXCEPTIONS.each do |exception|
+        context "when an #{exception} is raised" do
+          let(:args) do
+            {
+              callback_exception: exception
+            }
+          end
 
-      it 'raises an exception' do
-        expect { subject }.to raise_exception(ActiveRecord::RecordInvalid)
+          it 'does not save the model' do
+            expect { subject rescue nil }
+              .to change { User.count }
+              .by(0)
+          end
+
+          it 'raises the exception' do
+            expect { subject }.to raise_exception(exception)
+          end
+        end
+      end
+    end
+
+    context 'with a non-rescueable exception' do
+      let(:exception) { ActiveRecord::NotNullViolation }
+      let(:args) do
+        {
+          callback_exception: exception
+        }
+      end
+
+      it 'does not save the model' do
+        expect { subject rescue nil }
+          .to change { User.count }
+          .by(0)
+      end
+
+      it 'raises the exception' do
+        expect { subject }.to raise_exception(exception)
       end
     end
   end
