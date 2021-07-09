@@ -42,7 +42,7 @@ RSpec.describe 'Multiple errors' do
     subject { form.save!(options) }
 
     it 'raises an exception' do
-      expect { subject }.to raise_error(ActiveRecord::RecordNotSaved)
+      expect { subject }.to raise_error(ActiveModel::ValidationError)
     end
 
     it 'does not save the user' do
