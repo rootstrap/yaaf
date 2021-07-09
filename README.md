@@ -50,7 +50,7 @@ If you want to learn more about Form Objects you can check out [these great arti
 
 ### Why YAAF?
 
-- It is [67 lines long](https://github.com/rootstrap/yaaf/blob/master/lib/yaaf/form.rb#L67). As you can imagine, we did no magic in such a few lines of code, we just leveraged Rails modules in order to provide our form objects with a Rails-like behavior. You can review the code, it's easy to understand.
+- It is [69 lines long](https://github.com/rootstrap/yaaf/blob/master/lib/yaaf/form.rb#L69). As you can imagine, we did no magic in such a few lines of code, we just leveraged Rails modules in order to provide our form objects with a Rails-like behavior. You can review the code, it's easy to understand.
 
 - It provides a similar API to `ActiveModel` models so you can treat them interchangeably.
 
