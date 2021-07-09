@@ -8,6 +8,8 @@ module YAAF
     include ::ActiveRecord::Transactions
     define_model_callbacks :save
 
+    delegate :transaction, to: ::ActiveRecord::Base
+
     validate :validate_models
 
     def save(options = {})
@@ -38,7 +40,7 @@ module YAAF
     end
 
     def save_in_transaction(options)
-      ::ActiveRecord::Base.transaction do
+      transaction do
         run_callbacks :save do
           save_models(options)
         end
