@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         gemfile: [rails_5.2.0.gemfile, rails_6.0.0.gemfile, rails_6.1.0.gemfile, rails_main.gemfile]
-        ruby_version: [2.3, 2.4, 2.5, 2.6, 2.7]
+        ruby_version: [2.3, 2.4, 2.5, 2.6, 2.7, 3.0]
         exclude:
           - gemfile: rails_main.gemfile
             ruby_version: 2.3
@@ -47,13 +47,20 @@ jobs:
         ./cc-test-reporter before-build
       env:
         CC_TEST_REPORTER_ID: aff2c7b9e07e54d5fc9e5588d2e2a8bab4f69950d35000edc2b6250bbaba477d
-    - name: Build and test with Rake
+    - name: Build and test with Rake (ruby-2.x)
+      if: startsWith(matrix.ruby_version, '2')
       run: |
         gem install bundler:1.17.3
         bundle _1.17.3_ update
         bundle _1.17.3_ install --gemfile spec/gemfiles/${{ matrix.gemfile }} --jobs 4 --retry 3
         bundle _1.17.3_ exec rake code_analysis
         bundle _1.17.3_ exec rspec
+    - name: Build and test with Rake (ruby-3.x)
+      if: startsWith(matrix.ruby_version, '3')
+      run: |
+        bundle install --gemfile spec/gemfiles/${{ matrix.gemfile }} --jobs 4 --retry 3
+        bundle exec rake code_analysis
+        bundle exec rspec
     - name: Report to CodeClimate
       run: |
         ./cc-test-reporter after-build --exit-code 0
