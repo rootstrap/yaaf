@@ -15,6 +15,8 @@ Gem::Specification.new do |spec|
 
   spec.metadata['homepage_uri'] = spec.homepage
   spec.metadata['source_code_uri'] = 'https://github.com/rootstrap/yaaf'
+  spec.metadata['bug_tracker_uri'] = 'https://github.com/rootstrap/yaaf/issues'
+  spec.metadata['changelog_uri'] = 'https://github.com/rootstrap/yaaf/releases'
 
   spec.files = Dir['LICENSE.txt', 'README.md', 'lib/**/*']
   spec.require_paths = ['lib']
