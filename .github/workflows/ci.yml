@@ -55,7 +55,7 @@ jobs:
         chmod +x ./cc-test-reporter
         ./cc-test-reporter before-build
       env:
-        CC_TEST_REPORTER_ID: aff2c7b9e07e54d5fc9e5588d2e2a8bab4f69950d35000edc2b6250bbaba477d
+        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
     - name: Run test
       run: |
         bundle exec rake code_analysis
@@ -64,4 +64,4 @@ jobs:
       run: |
         ./cc-test-reporter after-build --exit-code 0
       env:
-        CC_TEST_REPORTER_ID: aff2c7b9e07e54d5fc9e5588d2e2a8bab4f69950d35000edc2b6250bbaba477d
+        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
