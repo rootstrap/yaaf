@@ -1,3 +1,8 @@
+Layout/BlockAlignment:
+  # Rubocop had a bug in ruby3.1 and this is a workaround to fix it.
+  # 1.22.3 and above are fixed, but must be 1.2 or lower for ruby 2.4 support
+  Enabled: false
+
 Layout/LineLength:
   Max: 100
   # To make it possible to copy or click on URIs in the code, we allow lines
