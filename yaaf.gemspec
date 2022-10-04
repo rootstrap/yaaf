@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.name          = 'yaaf'
   spec.version       = YAAF::VERSION
   spec.authors       = ['Juan Manuel Ramallo', 'Santiago Bartesaghi']
-  spec.email         = ['juan.ramallo@rootstrap.com']
+  spec.email         = ['juanmanuelramallo@hey.com', 'santib@hey.com']
 
   spec.summary       = 'Easing the form object pattern in Rails applications.'
   spec.homepage      = 'https://github.com/rootstrap/yaaf'
@@ -24,7 +24,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'activemodel', '>= 5.2'
   spec.add_dependency 'activerecord', '>= 5.2'
 
-  spec.add_development_dependency 'database_cleaner-active_record', '~> 1.8.0'
+  spec.add_development_dependency 'database_cleaner-active_record', '~> 2.0.1'
   spec.add_development_dependency 'rake', '~> 13.0.1'
   spec.add_development_dependency 'reek', '~> 5.6.0'
   spec.add_development_dependency 'rspec', '~> 3.9.0'

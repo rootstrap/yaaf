@@ -16,6 +16,7 @@ require 'yaaf'
 load File.dirname(__FILE__) + '/support/schema.rb'
 require File.dirname(__FILE__) + '/support/models.rb'
 require File.dirname(__FILE__) + '/support/forms.rb'
+require File.dirname(__FILE__) + '/support/database_cleaner_monkeypatch.rb'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
