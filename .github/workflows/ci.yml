@@ -8,8 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        gemfile: [rails_5_2.gemfile, rails_6_0.gemfile, rails_6_1.gemfile, rails_7_0.gemfile, rails_main.gemfile]
-        ruby_version: ['2.3', '2.4', '2.5', '2.6', '2.7', '3.0', '3.1']
+        gemfile: [rails_5_2.gemfile, rails_6_0.gemfile, rails_6_1.gemfile, rails_7_0.gemfile, rails_7_1.gemfile, rails_main.gemfile]
+        ruby_version: ['2.3', '2.4', '2.5', '2.6', '2.7', '3.0', '3.1', '3.2']
         exclude:
           - gemfile: rails_main.gemfile
             ruby_version: '2.3'
@@ -21,6 +21,14 @@ jobs:
             ruby_version: '2.6'
           - gemfile: rails_main.gemfile
             ruby_version: '2.7'
+          - gemfile: rails_7_1.gemfile
+            ruby_version: '2.3'
+          - gemfile: rails_7_1.gemfile
+            ruby_version: '2.4'
+          - gemfile: rails_7_1.gemfile
+            ruby_version: '2.5'
+          - gemfile: rails_7_1.gemfile
+            ruby_version: '2.6'
           - gemfile: rails_7_0.gemfile
             ruby_version: '2.3'
           - gemfile: rails_7_0.gemfile
@@ -33,20 +41,26 @@ jobs:
             ruby_version: '2.3'
           - gemfile: rails_6_1.gemfile
             ruby_version: '2.4'
+          - gemfile: rails_6_1.gemfile
+            ruby_version: '3.1'
+          - gemfile: rails_6_1.gemfile
+            ruby_version: '3.2'
           - gemfile: rails_6_0.gemfile
             ruby_version: '2.3'
           - gemfile: rails_6_0.gemfile
             ruby_version: '2.4'
           - gemfile: rails_6_0.gemfile
             ruby_version: '3.0'
-          - gemfile: rails_5_2.gemfile
-            ruby_version: '3.0'
-          - gemfile: rails_6_1.gemfile
-            ruby_version: '3.1'
           - gemfile: rails_6_0.gemfile
             ruby_version: '3.1'
+          - gemfile: rails_6_0.gemfile
+            ruby_version: '3.2'
+          - gemfile: rails_5_2.gemfile
+            ruby_version: '3.0'
           - gemfile: rails_5_2.gemfile
             ruby_version: '3.1'
+          - gemfile: rails_5_2.gemfile
+            ruby_version: '3.2'
     env:
       BUNDLE_GEMFILE: spec/gemfiles/${{ matrix.gemfile }}
     steps:
