@@ -200,7 +200,7 @@ The `#errors` method will return an `ActiveModel::Errors` object such as any oth
 
 ### #save
 
-The `#save` method will run validations. If it's invalid it will return `false`, otherwise it will save all the models within a DB transaction and return `true`.
+The `#save` method will run validations. If it's invalid it will return `false`, otherwise it will save all the models within a DB transaction and return `true`. Models that were `#marked_for_destruction?` will be destroyed instead of saved, this can be done by calling `#mark_for_destruction` on an `ActiveRecord` model.
 
 Defined callbacks will be called in the following order:
 - `before_validation`
