@@ -23,7 +23,9 @@ detectors:
     allow_calls: []
   FeatureEnvy:
     enabled: true
-    exclude: ['YAAF::Form#promote_legacy_errors']
+    exclude: 
+      - 'YAAF::Form#promote_legacy_errors'
+      - 'YAAF::Form#save_models'
   InstanceVariableAssumption:
     enabled: false
   IrresponsibleModule:

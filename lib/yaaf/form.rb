@@ -52,7 +52,9 @@ module YAAF
     def save_models(options)
       options.merge!(validate: false)
 
-      models.map { |model| model.save!(**options) }
+      models.map do |model|
+        model.marked_for_destruction? ? model.destroy! : model.save!(**options)
+      end
     end
 
     def validate_models
