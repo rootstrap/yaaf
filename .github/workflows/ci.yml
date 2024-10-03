@@ -23,6 +23,8 @@ jobs:
             ruby_version: '2.7'
           - gemfile: rails_main.gemfile
             ruby_version: '3.0'
+          - gemfile: rails_main.gemfile
+            ruby_version: '3.1'
           - gemfile: rails_7_2.gemfile
             ruby_version: '2.3'
           - gemfile: rails_7_2.gemfile
