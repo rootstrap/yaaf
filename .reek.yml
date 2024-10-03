@@ -23,7 +23,7 @@ detectors:
     allow_calls: []
   FeatureEnvy:
     enabled: true
-    exclude: 
+    exclude:
       - 'YAAF::Form#promote_legacy_errors'
       - 'YAAF::Form#save_models'
   InstanceVariableAssumption:
@@ -44,7 +44,8 @@ detectors:
     max_params: 3
   ManualDispatch:
     enabled: true
-    exclude: []
+    exclude:
+      - 'YAAF::Form#save_models'
   MissingSafeMethod:
     enabled: false
     exclude: []

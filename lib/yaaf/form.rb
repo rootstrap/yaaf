@@ -53,7 +53,11 @@ module YAAF
       options.merge!(validate: false)
 
       models.map do |model|
-        model.marked_for_destruction? ? model.destroy! : model.save!(**options)
+        if model.respond_to?(:marked_for_destruction?) && model.marked_for_destruction?
+          model.destroy!
+        else
+          model.save!(**options)
+        end
       end
     end
 
