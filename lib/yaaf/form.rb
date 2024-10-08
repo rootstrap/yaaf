@@ -62,7 +62,11 @@ module YAAF
     end
 
     def validate_models
-      models.each { |model| promote_errors(model) if model.invalid? }
+      models.each do |model|
+        next if model.respond_to?(:marked_for_destruction?) && model.marked_for_destruction?
+
+        promote_errors(model) if model.invalid?
+      end
     end
 
     def promote_errors(model)
