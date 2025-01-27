@@ -112,7 +112,6 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.ruby_version }}
-        bundler-cache: true
     - name: Before build
       run: |
         sudo apt-get install libsqlite3-dev
@@ -123,6 +122,9 @@ jobs:
         CC_TEST_REPORTER_ID: aff2c7b9e07e54d5fc9e5588d2e2a8bab4f69950d35000edc2b6250bbaba477d
     - name: Run test
       run: |
+        gem install bundler -v 2.4.22
+        bundle update
+        bundle install --gemfile spec/gemfiles/${{ matrix.gemfile }} --jobs 4 --retry 3
         bundle exec rake code_analysis
         bundle exec rspec
     - name: Report to CodeClimate
