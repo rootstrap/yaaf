@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'bundler/setup'
+require 'logger'
 require 'simplecov'
 require 'uri' unless defined? URI::Generic
 require 'active_record'
