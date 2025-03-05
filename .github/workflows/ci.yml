@@ -1,6 +1,9 @@
 name: CI
 
-on: [push, pull_request]
+on:
+  pull_request:
+  push:
+    branches: [master]
 
 jobs:
   build:
@@ -68,6 +71,8 @@ jobs:
             ruby_version: '2.5'
           - gemfile: rails_7_0.gemfile
             ruby_version: '2.6'
+          - gemfile: rails_7_0.gemfile
+            ruby_version: '3.4'
           - gemfile: rails_6_1.gemfile
             ruby_version: '2.3'
           - gemfile: rails_6_1.gemfile
@@ -122,7 +127,6 @@ jobs:
         CC_TEST_REPORTER_ID: aff2c7b9e07e54d5fc9e5588d2e2a8bab4f69950d35000edc2b6250bbaba477d
     - name: Run test
       run: |
-        gem install bundler -v 2.4.22
         bundle update
         bundle install --gemfile spec/gemfiles/${{ matrix.gemfile }} --jobs 4 --retry 3
         bundle exec rake code_analysis
