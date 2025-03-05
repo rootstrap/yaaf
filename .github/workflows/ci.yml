@@ -1,15 +1,19 @@
 name: CI
 
-on: [push, pull_request]
+on:
+  pull_request:
+  push:
+    branches: [master]
 
 jobs:
   build:
     if: "! contains(toJSON(github.event.commits.*.message), '[skip-ci]')"
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
-        gemfile: [rails_5_2.gemfile, rails_6_0.gemfile, rails_6_1.gemfile, rails_7_0.gemfile, rails_7_1.gemfile, rails_7_2.gemfile, rails_main.gemfile]
-        ruby_version: ['2.3', '2.4', '2.5', '2.6', '2.7', '3.0', '3.1', '3.2', '3.3']
+        gemfile: [rails_5_2.gemfile, rails_6_0.gemfile, rails_6_1.gemfile, rails_7_0.gemfile, rails_7_1.gemfile, rails_7_2.gemfile, rails_8_0.gemfile, rails_main.gemfile]
+        ruby_version: ['2.3', '2.4', '2.5', '2.6', '2.7', '3.0', '3.1', '3.2', '3.3', '3.4']
         exclude:
           - gemfile: rails_main.gemfile
             ruby_version: '2.3'
@@ -25,6 +29,20 @@ jobs:
             ruby_version: '3.0'
           - gemfile: rails_main.gemfile
             ruby_version: '3.1'
+          - gemfile: rails_8_0.gemfile
+            ruby_version: '2.3'
+          - gemfile: rails_8_0.gemfile
+            ruby_version: '2.4'
+          - gemfile: rails_8_0.gemfile
+            ruby_version: '2.5'
+          - gemfile: rails_8_0.gemfile
+            ruby_version: '2.6'
+          - gemfile: rails_8_0.gemfile
+            ruby_version: '2.7'
+          - gemfile: rails_8_0.gemfile
+            ruby_version: '3.0'
+          - gemfile: rails_8_0.gemfile
+            ruby_version: '3.1'
           - gemfile: rails_7_2.gemfile
             ruby_version: '2.3'
           - gemfile: rails_7_2.gemfile
@@ -53,6 +71,8 @@ jobs:
             ruby_version: '2.5'
           - gemfile: rails_7_0.gemfile
             ruby_version: '2.6'
+          - gemfile: rails_7_0.gemfile
+            ruby_version: '3.4'
           - gemfile: rails_6_1.gemfile
             ruby_version: '2.3'
           - gemfile: rails_6_1.gemfile
@@ -63,6 +83,8 @@ jobs:
             ruby_version: '3.2'
           - gemfile: rails_6_1.gemfile
             ruby_version: '3.3'
+          - gemfile: rails_6_1.gemfile
+            ruby_version: '3.4'
           - gemfile: rails_6_0.gemfile
             ruby_version: '2.3'
           - gemfile: rails_6_0.gemfile
@@ -75,6 +97,8 @@ jobs:
             ruby_version: '3.2'
           - gemfile: rails_6_0.gemfile
             ruby_version: '3.3'
+          - gemfile: rails_6_0.gemfile
+            ruby_version: '3.4'
           - gemfile: rails_5_2.gemfile
             ruby_version: '3.0'
           - gemfile: rails_5_2.gemfile
@@ -83,6 +107,8 @@ jobs:
             ruby_version: '3.2'
           - gemfile: rails_5_2.gemfile
             ruby_version: '3.3'
+          - gemfile: rails_5_2.gemfile
+            ruby_version: '3.4'
     env:
       BUNDLE_GEMFILE: spec/gemfiles/${{ matrix.gemfile }}
     steps:
@@ -91,7 +117,6 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.ruby_version }}
-        bundler-cache: true
     - name: Before build
       run: |
         sudo apt-get install libsqlite3-dev
@@ -102,6 +127,8 @@ jobs:
         CC_TEST_REPORTER_ID: aff2c7b9e07e54d5fc9e5588d2e2a8bab4f69950d35000edc2b6250bbaba477d
     - name: Run test
       run: |
+        bundle update
+        bundle install --gemfile spec/gemfiles/${{ matrix.gemfile }} --jobs 4 --retry 3
         bundle exec rake code_analysis
         bundle exec rspec
     - name: Report to CodeClimate

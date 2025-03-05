@@ -3,4 +3,3 @@ source 'https://rubygems.org'
 gemspec path: '../..'
 
 gem 'rails', git: 'https://github.com/rails/rails', branch: 'main'
-gem 'sqlite3', '~> 2.1.0'
