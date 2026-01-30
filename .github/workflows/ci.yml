@@ -45,22 +45,9 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.ruby_version }}
-    - name: Before build
-      run: |
-        sudo apt-get install libsqlite3-dev
-        curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-        chmod +x ./cc-test-reporter
-        ./cc-test-reporter before-build
-      env:
-        CC_TEST_REPORTER_ID: aff2c7b9e07e54d5fc9e5588d2e2a8bab4f69950d35000edc2b6250bbaba477d
     - name: Run test
       run: |
         bundle update
         bundle install --gemfile spec/gemfiles/${{ matrix.gemfile }} --jobs 4 --retry 3
         bundle exec rake code_analysis
         bundle exec rspec
-    - name: Report to CodeClimate
-      run: |
-        ./cc-test-reporter after-build --exit-code 0
-      env:
-        CC_TEST_REPORTER_ID: aff2c7b9e07e54d5fc9e5588d2e2a8bab4f69950d35000edc2b6250bbaba477d

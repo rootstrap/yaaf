@@ -5,8 +5,6 @@ YAAF (Yet Another Active Form) is a gem that let you create form objects in an e
 We were going to name this gem `ActiveForm` to follow Rails naming conventions but given there are a lot of form object gems named like that we preferred to go with `YAAF`.
 
 ![CI](https://github.com/rootstrap/yaaf/workflows/CI/badge.svg)
-[![Maintainability](https://api.codeclimate.com/v1/badges/c3dea064e1003b700260/maintainability)](https://codeclimate.com/github/rootstrap/yaaf/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/c3dea064e1003b700260/test_coverage)](https://codeclimate.com/github/rootstrap/yaaf/test_coverage)
 
 ## Table of Contents
 
@@ -23,6 +21,7 @@ We were going to name this gem `ActiveForm` to follow Rails naming conventions b
   - [#save!](#save!)
   - [Validations](#validations)
   - [Callbacks](#callbacks)
+  - [Normalizes](#normalizes)
 - [Sample app](#sample-app)
 - [Links](#links)
 - [Development](#development)
@@ -248,6 +247,19 @@ Available callbacks are (listed in execution order):
 - `before_save`
 - `after_save`
 - `after_commit/after_rollback`
+
+### Normalizes
+
+`YAAF` form objects support `normalizes` the same way as `ActiveModel` models. For example:
+
+```ruby
+class RegistrationForm < YAAF::Form
+  normalizes :email, with: ->(email) { email.strip.downcase }
+  normalizes :name, with: ->(name) { name.strip.titleize }
+
+  # ...
+end
+```
 
 ## Sample app
 
