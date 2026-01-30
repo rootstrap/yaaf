@@ -21,6 +21,8 @@ jobs:
             ruby_version: '3.0'
           - gemfile: rails_main.gemfile
             ruby_version: '3.1'
+          - gemfile: rails_main.gemfile
+            ruby_version: '3.2'
           - gemfile: rails_8_1.gemfile
             ruby_version: '2.7'
           - gemfile: rails_8_1.gemfile

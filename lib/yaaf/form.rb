@@ -7,7 +7,11 @@ module YAAF
     include ::ActiveModel::Validations::Callbacks
     include ::ActiveRecord::Transactions
     include ::ActiveModel::Attributes
-    include ::ActiveModel::Attributes::Normalization if defined?(::ActiveModel::Attributes::Normalization)
+
+    if defined?(::ActiveModel::Attributes::Normalization)
+      include ::ActiveModel::Attributes::Normalization
+    end
+
     include ::ActiveRecord::Normalization if defined?(::ActiveRecord::Normalization)
 
     define_model_callbacks :save
