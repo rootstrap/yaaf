@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.summary       = 'Easing the form object pattern in Rails applications.'
   spec.homepage      = 'https://github.com/rootstrap/yaaf'
   spec.license       = 'MIT'
-  spec.required_ruby_version = Gem::Requirement.new('>= 2.3.0')
+  spec.required_ruby_version = Gem::Requirement.new('>= 2.7.0')
 
   spec.metadata['homepage_uri'] = spec.homepage
   spec.metadata['source_code_uri'] = 'https://github.com/rootstrap/yaaf'
@@ -21,8 +21,8 @@ Gem::Specification.new do |spec|
   spec.files = Dir['LICENSE.txt', 'README.md', 'lib/**/*']
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'activemodel', '>= 5.2'
-  spec.add_dependency 'activerecord', '>= 5.2'
+  spec.add_dependency 'activemodel', '>= 7.1'
+  spec.add_dependency 'activerecord', '>= 7.1'
 
   spec.add_development_dependency 'database_cleaner-active_record', '~> 2.1.0'
   spec.add_development_dependency 'rake', '~> 13.0.1'
