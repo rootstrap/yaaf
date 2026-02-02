@@ -6,6 +6,12 @@ module YAAF
     include ::ActiveModel::Model
     include ::ActiveModel::Validations::Callbacks
     include ::ActiveRecord::Transactions
+
+    if defined?(::ActiveModel::Attributes::Normalization)
+      include ::ActiveModel::Attributes
+      include ::ActiveModel::Attributes::Normalization
+    end
+
     define_model_callbacks :save
 
     delegate :transaction, to: ::ActiveRecord::Base
