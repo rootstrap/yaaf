@@ -248,7 +248,7 @@ Available callbacks are (listed in execution order):
 - `after_save`
 - `after_commit/after_rollback`
 
-### Normalizes
+### Normalizes (Rails 8.1+)
 
 `YAAF` form objects support `normalizes` the same way as `ActiveModel` models. For example:
 
