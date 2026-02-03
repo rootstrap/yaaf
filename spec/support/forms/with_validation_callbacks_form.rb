@@ -1,5 +1,8 @@
 class WithValidationCallbacksForm < YAAF::Form
-  attr_accessor :email, :name, :before_counter, :after_counter
+  attribute :email, :string
+  attribute :name, :string
+
+  attr_accessor :before_counter, :after_counter
 
   validates :name, format: { with: /[a-zA-Z]+/ }, allow_blank: true
   before_validation :add_to_before_counter

@@ -1,5 +1,8 @@
 class WithRollbackCallbacksForm < YAAF::Form
-  attr_accessor :email, :name, :after_counter
+  attribute :email, :string
+  attribute :name, :string
+
+  attr_accessor :after_counter
 
   validates :name, format: { with: /[a-zA-Z]+/ }, allow_blank: true
   after_rollback { @after_counter += 1 }

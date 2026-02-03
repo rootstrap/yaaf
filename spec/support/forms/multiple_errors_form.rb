@@ -1,5 +1,6 @@
 class MultipleErrorsForm < YAAF::Form
-  attr_accessor :email, :name
+  attribute :email, :string
+  attribute :name, :string
 
   validates :name, format: { with: /[a-zA-Z]+/ }
   validates :email, format: { with: /\S+@\S+\.\S+/ }

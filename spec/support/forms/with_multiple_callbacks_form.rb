@@ -1,5 +1,8 @@
 class WithMultipleCallbacksForm < YAAF::Form
-  attr_accessor :email, :name, :result
+  attribute :email, :string
+  attribute :name, :string
+
+  attr_accessor :result
 
   validates :name, format: { with: /[a-zA-Z]+/ }, allow_blank: true
   after_validation :add_to_after_validation_counter, :add_again_to_after_validation_counter

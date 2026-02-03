@@ -254,6 +254,9 @@ Available callbacks are (listed in execution order):
 
 ```ruby
 class RegistrationForm < YAAF::Form
+  attribute :email, :string
+  attribute :name, :string
+
   normalizes :email, with: ->(email) { email.strip.downcase }
   normalizes :name, with: ->(name) { name.strip.titleize }
 
