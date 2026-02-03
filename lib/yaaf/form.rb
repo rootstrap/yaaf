@@ -6,7 +6,7 @@ module YAAF
     include ::ActiveModel::Model
     include ::ActiveModel::Validations::Callbacks
     include ::ActiveRecord::Transactions
-    include ::ActiveModel::Attributes if defined?(::ActiveModel::Attributes)
+    include ::ActiveModel::Attributes
 
     if defined?(::ActiveModel::Attributes::Normalization)
       include ::ActiveModel::Attributes::Normalization
