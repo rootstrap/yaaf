@@ -49,7 +49,8 @@ end
 # app/forms/invite_form.rb
 
 class InviteForm < ApplicationForm
-  attr_accessor :email
+  attribute :email, :string
+
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
 
   def initialize(args = {})

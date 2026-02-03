@@ -181,7 +181,7 @@ The `.new` method should be called with the arguments that the form object needs
 
 When initializing a `YAAF` form object, there are two things to keep in mind
 1. You need to define the `@models` instance variables to be an array of all the models that you want to be validated/saved within the form object.
-2. To leverage `ActiveModel`'s features, you can call `super` to automatically make the attributes be stored in instance variables. If you use it, make sure to also add `attr_accessor`s, otherwise `ActiveModel` will fail.
+2. To leverage `ActiveModel`'s features, you can call `super` to automatically make the attributes be stored in instance variables. If you use it, make sure to also add `attribute`s, otherwise `ActiveModel` will fail.
 
 ### #valid?
 
