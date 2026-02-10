@@ -12,8 +12,11 @@ For example, a simple registration form will look like this:
 # app/forms/registration_form.rb
 
 class RegistrationForm < ApplicationForm
-  attr_accessor :first_name, :last_name, :email, :password,
-                :password_confirmation
+  attribute :first_name, :string
+  attribute :last_name, :string
+  attribute :email, :string
+  attribute :password, :string
+  attribute :password_confirmation, :string
 
   # To let Devise treat the form object as it were the actual user object
   delegate_missing_to :user

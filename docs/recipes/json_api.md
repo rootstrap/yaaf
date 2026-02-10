@@ -1,4 +1,4 @@
-# Using YAAF with nested forms
+# Using YAAF with JSON API
 
 When you are using Rails as a JSON API, you can still use `YAAF` to build your models.
 
@@ -45,7 +45,8 @@ end
 module Api
   module V1
     class InviteForm < ApplicationForm
-      attr_accessor :email
+      attribute :email, :string
+
       validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
      
       def initialize(args = {})

@@ -1,5 +1,8 @@
 class WithCommitCallbacksForm < YAAF::Form
-  attr_accessor :email, :name, :after_counter
+  attribute :email, :string
+  attribute :name, :string
+
+  attr_accessor :after_counter
 
   validates :name, format: { with: /[a-zA-Z]+/ }, allow_blank: true
   after_commit { @after_counter += 1 }

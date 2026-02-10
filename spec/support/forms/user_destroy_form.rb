@@ -1,5 +1,6 @@
 class UserDestroyForm < YAAF::Form
-  attr_accessor :email, :name
+  attribute :email, :string
+  attribute :name, :string
 
   before_save :mark_user_for_destruction
 

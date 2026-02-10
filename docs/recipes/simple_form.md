@@ -12,7 +12,8 @@ For example, in a library management system (a pretty minimal one), the form to 
 # app/forms/book_form.rb
 
 class BookForm < YAAF::Form
-  attr_accessor :name, :isbn
+  attribute :name, :string
+  attribute :isbn, :string
 
   def initialize(attributes)
     super(attributes)

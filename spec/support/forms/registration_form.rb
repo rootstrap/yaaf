@@ -1,5 +1,6 @@
 class RegistrationForm < YAAF::Form
-  attr_accessor :email, :name
+  attribute :email, :string
+  attribute :name, :string
 
   validates :name, format: { with: /[a-zA-Z]+/ }, allow_blank: true
 
